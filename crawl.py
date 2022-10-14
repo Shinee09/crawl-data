@@ -2,9 +2,26 @@ import requests
 import re
 import openpyxl
 from time import sleep
+import datetime
 
+day = datetime.datetime.now().day
+month = datetime.datetime.now().month
+year = datetime.datetime.now().year
 
-filename = 'export.xlsx'
+filename = "export " + str(day) + '-' + str(month) + '-' + str(year) + ".xlsx"
+
+from openpyxl import Workbook
+wb = Workbook()
+ws = wb.active
+ws['A1'] = "MST"
+ws['B1'] = "TÊN CÔNG TY"
+ws['C1'] = "ĐỊA CHỈ"
+ws['D1'] = "ĐẠI DIỆN PHÁP LUẬT"
+ws['E1'] = "ĐIỆN THOẠI"
+ws['F1'] = "NGÀY HOẠT ĐỘNG"
+ws['G1'] = "TÌNH TRẠNG"
+ws['H1'] = "HOÁ ĐƠN ĐIỆN TỬ"
+wb.save(filename)
 
 def update_value_excel(filename,cellname,value):
     wb = openpyxl.load_workbook(filename)
